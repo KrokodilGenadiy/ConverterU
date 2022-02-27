@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Converter+</string>
+    <string name="nominal">Номинал: %1$d</string>
 </resources>
