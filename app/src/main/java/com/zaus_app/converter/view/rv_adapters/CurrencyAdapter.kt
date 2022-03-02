@@ -36,6 +36,10 @@ class CurrencyAdapter(private val clickListener: OnItemClickListener) : Recycler
         this.items = list
     }
 
+    fun clearItems() {
+        this.items.clear()
+    }
+
     interface OnItemClickListener {
         fun click(currency: Currency)
     }

@@ -15,10 +15,10 @@ class CurrencyViewHolder(binding: CurrencyItemBinding) : RecyclerView.ViewHolder
 
 
     fun bind(currency: Currency) {
-        charCode.text = currency.charCode
-        name.text = currency.name
-        nominal.text = "Номинал: ${currency.nominal}"
-        currentValue.text = "Тек. цена: ${currency.value} рос. руб."
-        previousValue.text = "Пред. цена: ${currency.previous} рос. руб."
+        charCode.text = currency.CharCode
+        name.text = currency.Name
+        nominal.text = "Номинал: ${currency.Nominal}"
+        currentValue.text = "Тек. цена: ${currency.Value} рос. руб."
+        previousValue.text = "Пред. цена: ${currency.Previous} рос. руб."
     }
 }

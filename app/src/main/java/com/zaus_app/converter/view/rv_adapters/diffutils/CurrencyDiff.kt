@@ -15,15 +15,15 @@ class CurrencyDiff(val oldList: MutableList<Currency>, val newList: MutableList<
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].id == newList[newItemPosition].id
+        return oldList[oldItemPosition].ID == newList[newItemPosition].ID
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return  oldList[oldItemPosition].charCode == newList[newItemPosition].charCode &&
-                oldList[oldItemPosition].name == newList[newItemPosition].name &&
-                oldList[oldItemPosition].nominal == newList[newItemPosition].nominal &&
-                oldList[oldItemPosition].value == newList[newItemPosition].value &&
-                oldList[oldItemPosition].previous == newList[newItemPosition].previous
+        return  oldList[oldItemPosition].CharCode == newList[newItemPosition].CharCode &&
+                oldList[oldItemPosition].Name == newList[newItemPosition].Name &&
+                oldList[oldItemPosition].Nominal == newList[newItemPosition].Nominal &&
+                oldList[oldItemPosition].Value == newList[newItemPosition].Value &&
+                oldList[oldItemPosition].Previous == newList[newItemPosition].Previous
     }
 
 }
