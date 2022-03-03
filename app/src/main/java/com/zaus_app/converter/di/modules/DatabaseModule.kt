@@ -2,23 +2,25 @@ package com.zaus_app.moviefrumy.di.modules
 
 import android.content.Context
 import androidx.room.Room
+import com.zaus_app.converter.data.MainRepository
+import com.zaus_app.converter.data.dao.CurrencyDao
+import com.zaus_app.converter.data.db.AppDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module
 class DatabaseModule {
-    /*   @Singleton
+    @Singleton
     @Provides
-    fun provideFilmDao(context: Context) =
+    fun provideCurrencyDAO(context: Context) =
         Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "films_db4"
-        ).build().filmDao()
+            "currency_db"
+        ).build().currencyDao()
 
     @Provides
     @Singleton
-    fun provideRepository(filmDao: FilmDao) = MainRepository(filmDao)
- */
+    fun provideRepository(currencyDao: CurrencyDao) = MainRepository(currencyDao)
 }

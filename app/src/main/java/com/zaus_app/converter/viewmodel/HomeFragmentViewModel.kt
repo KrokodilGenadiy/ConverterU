@@ -5,34 +5,24 @@ import androidx.lifecycle.ViewModel
 import com.zaus_app.converter.App
 import com.zaus_app.converter.data.entity.Currency
 import com.zaus_app.converter.domain.Interactor
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class HomeFragmentViewModel: ViewModel() {
     @Inject
     lateinit var interactor: Interactor
-    val currencyListData: MutableLiveData<List<Currency>> = MutableLiveData()
+    val currencyListData: Flow<List<Currency>>
+    val showProgressBar: Channel<Boolean>
 
 
     fun getValutes() {
-        interactor.getCurrencyList(apiCallback)
-    }
-
-    private val apiCallback = object : ApiCallback {
-        override fun onSuccess(list: MutableList<Currency>) {
-            currencyListData.postValue(list)
-        }
-
-        override fun onFailure() {
-        }
-    }
-
-    interface ApiCallback {
-        fun onSuccess(list: MutableList<Currency>)
-        fun onFailure()
+        interactor.getCurrencyList()
     }
 
     init {
         App.instance.dagger.inject(this)
-        getValutes()
+        showProgressBar = interactor.progressBarState
+        currencyListData = interactor.getCurrenciesFromDB()
     }
 }

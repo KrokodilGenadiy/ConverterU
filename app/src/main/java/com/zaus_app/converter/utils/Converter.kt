@@ -1,7 +1,5 @@
 package com.zaus_app.converter.utils
 
-import com.beust.klaxon.JsonObject
-import com.beust.klaxon.Klaxon
 import com.google.gson.Gson
 import com.zaus_app.converter.data.entity.Currency
 import com.zaus_app.converter.data.entity.Valutes

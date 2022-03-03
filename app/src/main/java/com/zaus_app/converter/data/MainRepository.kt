@@ -1,10 +1,11 @@
 package com.zaus_app.converter.data
 
+import com.zaus_app.converter.data.dao.CurrencyDao
 import com.zaus_app.converter.data.entity.Currency
+import kotlinx.coroutines.flow.Flow
 
-object MainRepository {
-    val valutes = listOf(
-        Currency("1", "ss", "ss", 1, "BY", 1.2, 1.1),
-        Currency("2", "bb", "bb", 2, "RU", 12.2, 12.1)
-    )
+class MainRepository(private val currencyDao: CurrencyDao) {
+    fun putToDb(currencies: List<Currency>) = currencyDao.insertAll(currencies)
+    fun getAllFromDB(): Flow<List<Currency>> = currencyDao.getCachedCurrency()
+    fun deleteAll() = currencyDao.nukeTable()
 }

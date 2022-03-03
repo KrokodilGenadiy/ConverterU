@@ -13,10 +13,10 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        //Создаем компонент
         dagger = DaggerAppComponent.builder()
             .remoteModule(RemoteModule())
-            .domainModule(DomainModule())
+            .domainModule(DomainModule(this))
+            .databaseModule(DatabaseModule())
             .build()
     }
 

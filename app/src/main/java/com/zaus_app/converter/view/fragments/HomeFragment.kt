@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zaus_app.converter.data.entity.Currency
@@ -16,10 +16,13 @@ import com.zaus_app.converter.viewmodel.HomeFragmentViewModel
 import com.zaus_app.moviefrumy.view.rv_adapters.CurrencyAdapter
 import com.zaus_app.moviefrumy.view.rv_adapters.diffutils.CurrencyDiff
 import com.zaus_app.moviefrumy.view.rv_adapters.itemdecorators.ItemDecorator
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private lateinit var scope: CoroutineScope
     private var currencyList = listOf<Currency>()
         set(value) {
             if (field == value) return
@@ -46,10 +49,29 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecycler()
-        viewModel.currencyListData.observe(viewLifecycleOwner, Observer<List<Currency>> {
-            currencyList = it
-        })
         initPullToRefresh()
+
+        scope = CoroutineScope(Dispatchers.IO).also { scope ->
+            scope.launch {
+                viewModel.currencyListData.collect {
+                    withContext(Dispatchers.Main) {
+                        currencyList = it
+                    }
+                }
+            }
+            scope.launch {
+                for (element in viewModel.showProgressBar) {
+                    launch(Dispatchers.Main) {
+                        binding.progressBar.isVisible = element
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        scope.cancel()
     }
 
     private fun initRecycler() {

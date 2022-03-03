@@ -52,8 +52,8 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.4.1'
 
     //Room
-    implementation("androidx.room:room-runtime:2.4.2")
-    annotationProcessor("androidx.room:room-compiler:2.4.2")
+    implementation "androidx.room:room-ktx:2.4.2"
+    kapt "androidx.room:room-compiler:2.4.2"
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
@@ -70,8 +70,5 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:2.38.1"
     kapt "com.google.dagger:dagger-compiler:2.38.1"
     kapt "com.google.dagger:dagger-android-processor:2.38.1"
-
-    //Klaxon
-    implementation 'com.beust:klaxon:5.5'
 
 }
