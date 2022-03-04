@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Converter+</string>
     <string name="nominal">Номинал: %1$d</string>
+    <string name="convert">Convert</string>
+    <string name="ruble">Российский рубль</string>
+    <string name="rub_charcode">RUB</string>
 </resources>
