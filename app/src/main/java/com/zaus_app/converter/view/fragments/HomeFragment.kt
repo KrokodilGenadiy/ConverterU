@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zaus_app.converter.data.entity.Currency
 import com.zaus_app.converter.databinding.FragmentHomeBinding
+import com.zaus_app.converter.view.MainActivity
 import com.zaus_app.converter.viewmodel.HomeFragmentViewModel
 import com.zaus_app.moviefrumy.view.rv_adapters.CurrencyAdapter
 import com.zaus_app.moviefrumy.view.rv_adapters.diffutils.CurrencyDiff
@@ -31,8 +32,8 @@ class HomeFragment : Fragment() {
         }
     private val currencyAdapter: CurrencyAdapter by lazy {
         CurrencyAdapter(object : CurrencyAdapter.OnItemClickListener {
-            override fun click(currency: com.zaus_app.converter.data.entity.Currency) {
-                Toast.makeText(requireContext(),"clicked", Toast.LENGTH_SHORT)
+            override fun click(currency: Currency) {
+                (requireActivity() as MainActivity).launchConvertFragment(currency)
             }
         })
     }

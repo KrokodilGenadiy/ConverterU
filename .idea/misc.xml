@@ -5,7 +5,9 @@
       <map>
         <entry key="..\:/Users/alexu/AndroidStudioProjects/Converter/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/alexu/AndroidStudioProjects/Converter/app/src/main/res/layout/currency_item.xml" value="0.33" />
+        <entry key="..\:/Users/alexu/AndroidStudioProjects/Converter/app/src/main/res/layout/fragment_convert.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/alexu/AndroidStudioProjects/Converter/app/src/main/res/layout/fragment_home.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/alexu/AndroidStudioProjects/Converter/app/src/main/res/menu/navigation.xml" value="0.18802083333333333" />
       </map>
     </option>
   </component>

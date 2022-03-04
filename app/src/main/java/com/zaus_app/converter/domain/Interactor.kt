@@ -5,6 +5,7 @@ import com.zaus_app.converter.data.CurrencyApi
 import com.zaus_app.converter.data.MainRepository
 import com.zaus_app.converter.data.entity.Currency
 import com.zaus_app.converter.utils.Converter
+import com.zaus_app.converter.utils.PreferenceProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
@@ -14,7 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Interactor(private val repo: MainRepository, private val retrofitService: CurrencyApi) {
+class Interactor(private val repo: MainRepository, private val retrofitService: CurrencyApi, private val preferences: PreferenceProvider) {
     val scope: CoroutineScope = CoroutineScope(Dispatchers.IO)
     var progressBarState = Channel<Boolean>(Channel.CONFLATED)
 
@@ -42,6 +43,11 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
     }
 
     fun getCurrenciesFromDB(): Flow<List<Currency>> = repo.getAllFromDB()
+
+    fun isFirstLaunch() = preferences.isFirstLaunch()
+
+
+    fun setNotFirstLaunch() = preferences.setNotFirstLaunchFlag()
 
     companion object {
         const val FILE = "daily_json.js"

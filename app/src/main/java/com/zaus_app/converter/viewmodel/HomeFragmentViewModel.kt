@@ -15,7 +15,6 @@ class HomeFragmentViewModel: ViewModel() {
     val currencyListData: Flow<List<Currency>>
     val showProgressBar: Channel<Boolean>
 
-
     fun getValutes() {
         interactor.getCurrencyList()
     }
@@ -23,6 +22,10 @@ class HomeFragmentViewModel: ViewModel() {
     init {
         App.instance.dagger.inject(this)
         showProgressBar = interactor.progressBarState
+        if (interactor.isFirstLaunch()) {
+            getValutes()
+            interactor.setNotFirstLaunch()
+        }
         currencyListData = interactor.getCurrenciesFromDB()
     }
 }
