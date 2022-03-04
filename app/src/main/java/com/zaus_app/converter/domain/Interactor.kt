@@ -52,6 +52,10 @@ class Interactor(
 
     fun setNotFirstLaunch() = preferences.setNotFirstLaunchFlag()
 
+    fun getSavedTime(): Long = preferences.getLastUpdateTime()
+
+    fun setSavedTime(time: Long) = preferences.putLastUpdateTime(time)
+
     companion object {
         const val FILE = "daily_json.js"
         const val VALUTE_JSONOBJ_NAME = "Valute"

@@ -13,18 +13,25 @@ class HomeFragmentViewModel: ViewModel() {
     lateinit var interactor: Interactor
     val currencyListData: Flow<List<Currency>>
     val showProgressBar: Channel<Boolean>
-
-    fun getValutes() {
-        interactor.getCurrencyList()
-    }
+    private var lastUpdateTime: Long = 0L
 
     init {
         App.instance.dagger.inject(this)
         showProgressBar = interactor.progressBarState
-        if (interactor.isFirstLaunch()) {
+        lastUpdateTime = System.currentTimeMillis() - interactor.getSavedTime()
+        if (interactor.isFirstLaunch() || lastUpdateTime > DAY) {
             getValutes()
             interactor.setNotFirstLaunch()
         }
         currencyListData = interactor.getCurrenciesFromDB()
+    }
+
+    fun getValutes() {
+        interactor.setSavedTime(System.currentTimeMillis())
+        interactor.getCurrencyList()
+    }
+
+    companion object {
+        const val DAY = 86400000L
     }
 }
