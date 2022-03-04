@@ -1,6 +1,5 @@
 package com.zaus_app.converter.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.zaus_app.converter.App
 import com.zaus_app.converter.data.entity.Currency
